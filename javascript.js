@@ -8,6 +8,7 @@ function createGrid(gridSize) {
     gridContainer.innerHTML = '';
     var gridSizeSqrt = Math.sqrt(gridSize);
     var gridSquareSideLength = 500 / gridSizeSqrt;
+
     // Create new grid
     for (let i = 0; i < gridSize; i++) {
         let gridSquare = document.createElement("div");
@@ -15,6 +16,7 @@ function createGrid(gridSize) {
         gridSquare.setAttribute('style', 'width:' + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
         gridContainer.appendChild(gridSquare);
 
+        // Add a trail when mouse moves over grid
         gridSquare.addEventListener("mouseenter", () => {
             gridSquare.setAttribute('style', 'background-color: black; width:' + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
         });
@@ -33,7 +35,9 @@ dropdown.forEach((a) => {
         if (buttonText == "Other") {
             let customSize = prompt("How many squares would you like per side?");
 
-            if (customSize <= 100) {
+            if (customSize === null || customSize == "") {
+                // If the user clicks out of the prompt or doesn't enter a value, the prompt is cancelled
+            } else if (customSize <= 100) {
                 createGrid(customSize * customSize);
             } else {
                 while (customSize > 100) {
@@ -52,4 +56,10 @@ dropdown.forEach((a) => {
 
 
     });
+});
+
+
+const reset = document.getElementById("reset")
+reset.addEventListener("click", () => {
+    createGrid(16 * 16);
 });

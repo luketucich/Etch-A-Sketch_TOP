@@ -50,7 +50,7 @@ body {
     display: block;
 }
 
-.reset button{
+.button{
     background-color: rgb(196, 1, 1);
     color: white;
     padding: 10px 20px;
@@ -62,6 +62,17 @@ body {
 
 
 /* Grid Styling */
+#toolsAndGrid {
+    display: flex;
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
 #gridContainer {
     margin-top: 10px;
     display: flex;
@@ -76,11 +87,4 @@ body {
     box-sizing: border-box;
     background-color: white;
     border: solid rgb(205, 205, 205) .1px;
-    margin: 0px;
 }
-/* 
-.gridSquare:hover{
-    background-color: black;
-} */
-/*  */
-
