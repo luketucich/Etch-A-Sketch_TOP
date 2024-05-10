@@ -75,12 +75,12 @@ body {
 .gridSquare {
     box-sizing: border-box;
     background-color: white;
-    border: solid rgb(223, 223, 223) .1px;
+    border: solid rgb(205, 205, 205) .1px;
     margin: 0px;
 }
-
+/* 
 .gridSquare:hover{
     background-color: black;
-}
+} */
 /*  */
 

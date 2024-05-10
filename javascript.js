@@ -1,5 +1,5 @@
 // Initial grid creation
-createGrid(10 * 10);
+createGrid(16 * 16);
 
 // Function to create the grid
 function createGrid(gridSize) {
@@ -14,6 +14,10 @@ function createGrid(gridSize) {
         gridSquare.classList.add("gridSquare");
         gridSquare.setAttribute('style', 'width:' + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
         gridContainer.appendChild(gridSquare);
+
+        gridSquare.addEventListener("mouseenter", () => {
+            gridSquare.setAttribute('style', 'background-color: black; width:' + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
+        });
     }
 }
 
@@ -28,12 +32,19 @@ dropdown.forEach((a) => {
 
         if (buttonText == "Other") {
             let customSize = prompt("How many squares would you like per side?");
-            let customSizeArea = customSize * customSize;
-            while (customSize > 100) {
-                alert("You must pick a value less than 100!")
-                let customSize = prompt("How many squares would you like per side?");
+
+            if (customSize <= 100) {
+                createGrid(customSize * customSize);
+            } else {
+                while (customSize > 100) {
+                    alert("You must pick a value less than 100!")
+                    let customSize = prompt("How many squares would you like per side?");
+                    if (customSize <= 100) {
+                        createGrid(customSize * customSize);
+                        break;
+                    }
+                }
             }
-            createGrid(customSizeArea);
         } else {
             gridSize = eval(buttonText);
             createGrid(gridSize); // Update the grid with the new size
@@ -42,5 +53,3 @@ dropdown.forEach((a) => {
 
     });
 });
-
-
