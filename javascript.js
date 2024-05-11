@@ -65,6 +65,7 @@ dropdown.forEach((a) => {
     a.addEventListener("click", () => {
 
         let buttonText = a.textContent;
+        createGrid(eval(a.textContent));
 
         if (buttonText == "Other") {
             let customSize = prompt("How many squares would you like per side?");
