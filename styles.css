@@ -48,7 +48,7 @@ body {
     display: none;
     position: absolute;
     min-width: 100px;
-    background-color: rgb(244, 153, 153);
+    background-color: rgb(205, 205, 205);
     box-shadow: 2px 2px 5px black;
 }
 
