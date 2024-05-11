@@ -1,6 +1,25 @@
 // Initial grid creation
 createGrid(16 * 16);
 
+// Changes the pen color    
+let tool = "blackPen";
+
+const blackPen = document.getElementById("blackPen")
+blackPen.addEventListener("click", () => {
+    tool = "blackPen";
+});
+
+const rainbowPen = document.getElementById("rainbowPen")
+rainbowPen.addEventListener("click", () => {
+    tool = "rainbowPen";
+});
+
+const eraser = document.getElementById("eraser")
+eraser.addEventListener("click", () => {
+    tool = "eraser";
+});
+// 
+
 // Function to create the grid
 function createGrid(gridSize) {
     // Clear existing grid
@@ -8,6 +27,7 @@ function createGrid(gridSize) {
     gridContainer.innerHTML = '';
     var gridSizeSqrt = Math.sqrt(gridSize);
     var gridSquareSideLength = 500 / gridSizeSqrt;
+    var mouseMove = 0
 
     // Create new grid
     for (let i = 0; i < gridSize; i++) {
@@ -18,7 +38,13 @@ function createGrid(gridSize) {
 
         // Add a trail when mouse moves over grid
         gridSquare.addEventListener("mouseenter", () => {
-            gridSquare.setAttribute('style', 'background-color: black; width:' + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
+            if (tool == "rainbowPen") {
+                gridSquare.setAttribute('style', `background-color: rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)}); width:` + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
+            } else if (tool == "blackPen") {
+                gridSquare.setAttribute('style', `background-color: black; width:` + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
+            } else if (tool == "eraser") {
+                gridSquare.setAttribute('style', `background-color: white; width:` + gridSquareSideLength + 'px; height:' + gridSquareSideLength + 'px;');
+            }
         });
     }
 }
@@ -37,17 +63,26 @@ dropdown.forEach((a) => {
 
             if (customSize === null || customSize == "") {
                 // If the user clicks out of the prompt or doesn't enter a value, the prompt is cancelled
+            } else if (customSize == 0) {
+                alert("You must have at least 1 square per side");
             } else if (customSize <= 100) {
                 createGrid(customSize * customSize);
             } else {
                 while (customSize > 100) {
-                    alert("You must pick a value less than 100!")
+                    alert("You must pick a value less than 100")
                     let customSize = prompt("How many squares would you like per side?");
-                    if (customSize <= 100) {
+
+                    if (customSize === null || customSize == "") {
+                        break;
+                    } else if (customSize == 0) {
+                        alert("You must have at least 1 square per side");
+                        break;
+                    } else if (customSize <= 100) {
                         createGrid(customSize * customSize);
                         break;
                     }
                 }
+
             }
         } else {
             gridSize = eval(buttonText);
