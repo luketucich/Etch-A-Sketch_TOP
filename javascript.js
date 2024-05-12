@@ -71,10 +71,13 @@ dropdown.forEach((a) => {
 
             if (customSize === null || customSize == "") {
                 // If the user clicks out of the prompt or doesn't enter a value, the prompt is cancelled
+            } else if (customSize.includes("-")) {
+                alert('You most enter a positive number');
+
             } else if (customSize == 0) {
                 alert("You must have at least 1 square per side");
 
-            } else if (isDecimal(Number(customSize)) == true) {
+            } else if (isDecimal(Number(customSize)) == true || customSize.includes("/")) {
                 alert("You must enter a whole number");
 
             } else if (customSize <= 100) {
@@ -88,11 +91,15 @@ dropdown.forEach((a) => {
                     if (customSize === null || customSize == "") {
                         break;
 
+                    } else if (customSize.includes("-")) {
+                        alert('You most enter a positive number');
+                        break;
+
                     } else if (customSize == 0) {
                         alert("You must have at least 1 square per side");
                         break;
 
-                    } else if (isDecimal(Number(customSize)) == true) {
+                    } else if (isDecimal(Number(customSize)) == true || customSize.includes("/")) {
                         alert("You must enter a whole number");
                         break;
 
